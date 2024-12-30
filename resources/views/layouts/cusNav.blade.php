@@ -1,67 +1,39 @@
-<nav class="nav-container">
-    <style>
-        .nav-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 200px;
-            background-color: #B2F5E1;
-            border-right: 1px solid #e2e8f0;
-            padding: 16px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-        }
+<nav class="bg-white shadow-md">
+    <div class="container mx-auto flex justify-between items-center px-4 py-3">
+        <!-- Logo -->
+        <div class="flex items-center space-x-3">
+            <span class="text-2xl font-bold text-indigo-800">Dorsu Gym</span>
+        </div>
 
-        .nav-links {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+        <!-- Navigation Links -->
+        <div class="hidden md:flex space-x-6">
 
-        .nav-link {
-            color: #000000;
-            font-size: 14px;
-            font-weight: 500;
-            text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            transition: color 0.2s, background-color 0.2s;
-        }
-
-        .nav-link:hover {
-            color: #000000;
-            background-color: #e0efffd7;
-        }
-
-        .nav-link.active {
-            color: #2d3748;
-            background-color: #ffffff;
-        }
-
-        .logout-form {
-            display: inline;
-        }
-    </style>
-
-    <!-- Navigation Menu -->
-    <div class="nav-links">
-        <!-- Profile -->
-        <a href="{{ route('profile.edit') }}" class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }}">
-            {{ __('Profile') }}
-        </a>
-
-        <!-- Appointments -->
-        {{-- <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
+        <a href="{{ route('home') }}" 
+        class="text-gray-700 hover:text-indigo-800 font-medium px-3 py-2 rounded-md transition-all {{ request()->routeIs('home') ? 'text-indigo-800 font-bold bg-indigo-100 border-b-2 border-indigo-800' : '' }}">
             {{ __('Home') }}
-        </a> --}}
-
-
+        </a>
+        <a href="{{ route('trainor') }}" 
+        class="text-gray-700 hover:text-indigo-800 font-medium px-3 py-2 rounded-md transition-all {{ request()->routeIs('trainor') ? 'text-indigo-800 font-bold bg-indigo-100 border-b-2 border-indigo-800' : '' }}">
+            {{ __('Your Trainor') }}
+        </a>
+        <a href="{{ route('subscribe') }}" 
+        class="text-gray-700 hover:text-indigo-800 font-medium px-3 py-2 rounded-md transition-all {{ request()->routeIs('subscribe') ? 'text-indigo-800 font-bold bg-indigo-100 border-b-2 border-indigo-800' : '' }}">
+            {{ __('Plan') }}
+        </a>
+        </div>
         <!-- Log Out -->
         <form method="POST" action="{{ route('logout') }}" class="logout-form">
             @csrf
-            <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); this.closest('form').submit();">
+            <a href="{{ route('logout') }}" class="bg-yellow-400 text-white px-4 py-2 rounded-md font-semibold hover:bg-yellow-500" onclick="event.preventDefault(); this.closest('form').submit();">
                 {{ __('Log Out') }}
             </a>
         </form>
+
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden text-gray-700 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
     </div>
 </nav>

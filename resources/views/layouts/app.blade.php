@@ -46,8 +46,6 @@
             <div class="sidebar">
                 @if(Auth::user()->role === 'admin')
                     @include('layouts.navigation')
-                @elseif(Auth::user()->role === 'customer')
-                    @include('layouts.cusNav')
                 @endif
             </div>
 

@@ -12,6 +12,16 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                poppins: ['Poppins', 'sans-serif'],
+            },
+            colors: {
+                indigo: {
+                    800: '#4B5563',
+                },
+                yellow: {
+                    400: '#FBBF24',
+                    500: '#F59E0B',
+                },
             },
         },
     },

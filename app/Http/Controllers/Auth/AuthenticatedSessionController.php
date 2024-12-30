@@ -28,7 +28,14 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
+    
+        // Custom role-based redirection
+        $user = auth()->user();
+        if ($user->role === 'customer') {
+            return redirect()->route('home'); // Redirect customers
+        }
+    
+        // Default redirection
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
