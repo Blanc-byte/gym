@@ -15,11 +15,8 @@ class Trainor extends Model
         'name',
         'age',
         'gender',
+        'specialty',
+        'duration',
     ];
 
-
-    // public function trains()
-    // {
-    //     return $this->hasMany(Trains::class, 'instructor_id', 'id');
-    // }
 }

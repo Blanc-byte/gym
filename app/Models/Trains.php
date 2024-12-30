@@ -12,8 +12,6 @@ class Trains extends Model
      protected $fillable = [
         'instructor_id',
         'subscription_id',
-        'sessionDuration',
-        'sessionType',
     ];
 
     public function instructor()

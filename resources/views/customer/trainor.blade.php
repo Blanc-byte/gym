@@ -57,10 +57,10 @@
                                                 {{ $train->instructor->name }}
                                             </h4>
                                             <p class="text-sm text-gray-700">
-                                                <strong>Session Type:</strong> {{ $train->sessionType }}
+                                                <strong>Specialty:</strong> {{ $train->instructor->specialty }}
                                             </p>
                                             <p class="text-sm text-gray-700">
-                                                <strong>Duration:</strong> {{ $train->sessionDuration }} hours
+                                                <strong>Class Duration / Day:</strong> {{ $train->instructor->duration }} hours
                                             </p>
                                         </div>
                                     </div>
