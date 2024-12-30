@@ -79,5 +79,24 @@
             </div>
         </div>
     </section>
+
+    <footer class="bg-indigo-900 text-white py-6">
+        <div class="container mx-auto px-6 lg:px-12 text-center">
+            <div class="mb-4">
+                <h3 class="text-lg font-bold uppercase">Dorsu Gym Fitness Center</h3>
+                <p class="text-sm text-indigo-300">Your journey to a better you starts here.</p>
+            </div>
+            <div class="flex justify-center space-x-6 mb-4">
+                <!-- Social Media Icons -->
+                <a href="#" class="hover:text-yellow-400"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="#" class="hover:text-yellow-400"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="#" class="hover:text-yellow-400"><i class="fab fa-twitter"></i> Twitter</a>
+            </div>
+            <div class="text-sm text-indigo-300">
+                <p>© 2024 Dorsu Gym Fitness Center. All Rights Reserved.</p>
+                <p class="mt-1">Designed with ❤️ by <span class="text-yellow-400">Blanc Group</span></p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
