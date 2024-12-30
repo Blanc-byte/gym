@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Customer\SubscribeController;
 use App\Http\Controllers\customerController;
+use App\Http\Controllers\adminController;
 use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,21 +18,50 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/dashboard', function () {
+    $user = Auth::user(); // Get the authenticated user
+
+    if ($user->role === 'admin') {
+        return redirect()->route('dashboard'); 
+    } elseif ($user->role === 'customer') {
+        return redirect()->route('home'); 
+    }
+    
+    abort(403, 'Unauthorized action.');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('/dashboard', [adminController::class, 'getAllUnsubscribe'] )->name('dashboard');
+    Route::post('/assign-trainers', [adminController::class, 'assignTrainers']);
+    Route::get('/viewClients', [adminController::class, 'viewClients'] )->name('viewClients');
+
+    Route::delete('/clients/{id}', [adminController::class, 'destroy'])->name('clients.destroy');
+    Route::delete('/clientsUns/{id}', [adminController::class, 'unsubscribe'])->name('clients.unsubscribe');
+
+
+    Route::get('/trainers', [adminController::class, 'trainers'])->name('trainers');
+    Route::post('/trainers', [adminController::class, 'store'])->name('trainers.store');
+    Route::get('/trainers/{id}/edit', [adminController::class, 'edit'])->name('trainers.edit');
+    Route::put('/trainers/{id}', [adminController::class, 'update'])->name('trainers.update');
+    Route::delete('/trainers/{id}', [adminController::class, 'destroyTrainer'])->name('trainers.destroy');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('customer.home');
-})->middleware(['auth', 'isCustomer'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('customer.home');
+// })->middleware(['auth', 'isCustomer'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'isAdmin'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'isAdmin'])->name('dashboard');
 
 Route::middleware(['auth', 'isCustomer'])->group(function () {
     Route::get('/customer-dashboard', [customerController::class, 'home'])->name('home');

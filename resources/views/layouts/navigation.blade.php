@@ -51,9 +51,17 @@
         </a>
 
         <!-- Appointments -->
-        {{-- <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+        <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
             {{ __('Dashboard') }}
-        </a> --}}
+        </a>
+
+        <a href="{{ route('viewClients') }}" class="nav-link {{ request()->routeIs('viewClients') ? 'active' : '' }}">
+            {{ __('Clients') }}
+        </a>
+
+        <a href="{{ route('trainers') }}" class="nav-link {{ request()->routeIs('trainers') ? 'active' : '' }}">
+            {{ __('Trainers') }}
+        </a>
 
 
         <!-- Log Out -->
