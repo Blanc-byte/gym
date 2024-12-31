@@ -1,58 +1,108 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <style>
+        body {
+            background-color: #000000;
+            /* background-image: url("{{ asset('images/dorsu.webp') }}");   */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            display: flex;  
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-container {
+            background-color: rgb(255, 255, 255); 
+            backdrop-filter: blur(5px); 
+            border-radius: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+            padding: 2rem;
+            max-width: 400px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .input-label {
+            color: #000000;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #9AE6B4;
+            border-radius: 5px;
+            margin-top: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .input-field:focus {
+            border-color: #48BB78;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.3);
+        }
+
+        .btn-green {
+            background-color: #3864f5;
+            color: white;
+            padding: 10px 20px;
+            font-weight: 600;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-green:hover {
+            background-color: #48BB78;
+        }
+
+        .error-message {
+            color: #E53E3E;
+        }
+
+        .text-white {
+            color: #ffffff;
+        }
+    </style>
+
+    <form method="POST" action="{{ route('register') }}" class="form-container">
         @csrf
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <label for="name" class="input-label">Name</label>
+            <input id="name" class="input-field" type="text" name="name" value="{{ old('name') }}" required autofocus />
+            <div class="error-message">{{ $errors->first('name') }}</div>
         </div>
 
         <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div>
+            <label for="email" class="input-label">Email</label>
+            <input id="email" class="input-field" type="email" name="email" value="{{ old('email') }}" required />
+            <div class="error-message">{{ $errors->first('email') }}</div>
         </div>
-
-        <div class="mt-4">
-            <x-input-label for="role" :value="__('Role')" />
-            <x-text-input id="role" class="block mt-1 w-full" type="text" name="role" :value="old('role')" required autocomplete="name" />
-            <x-input-error :messages="$errors->get('role')" class="mt-2" />
-        </div>
-
+        
         <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div>
+            <label for="password" class="input-label">Password</label>
+            <input id="password" class="input-field" type="password" name="password" required />
+            <div class="error-message">{{ $errors->first('password') }}</div>
         </div>
 
         <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        <div>
+            <label for="password_confirmation" class="input-label">Confirm Password</label>
+            <input id="password_confirmation" class="input-field" type="password" name="password_confirmation" required />
+            <div class="error-message">{{ $errors->first('password_confirmation') }}</div>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ml-4">
-                {{ __('Register') }}
-            </x-primary-button>
+        <!-- Register Button -->
+        <div class="center-align mt-2">
+            <a class="link" href="{{ route('login') }}">Already registered?</a>
+            <button type="submit" class="btn-green">Register</button>
         </div>
     </form>
 </x-guest-layout>
