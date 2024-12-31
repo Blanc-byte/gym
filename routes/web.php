@@ -51,17 +51,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::get('/dashboard', function () {
-//     return view('customer.home');
-// })->middleware(['auth', 'isCustomer'])->name('dashboard');
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'isAdmin'])->name('dashboard');
 
 Route::middleware(['auth', 'isCustomer'])->group(function () {
     Route::get('/customer-dashboard', [customerController::class, 'home'])->name('home');

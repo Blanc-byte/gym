@@ -51,20 +51,21 @@
                                 @if (strtolower(trim($subscription->subscription_status)) === 'subscribe')
                                     <h3 class="text-lg font-bold text-gray-800 mb-2">Assigned Trainers:</h3>
                                     @forelse ($subscription->trains as $train)
-                                        <div class="bg-gray-100 p-4 rounded-lg flex items-center gap-4 mb-4">
-                                            <img src="{{ asset('image/PersonCircle.png') }}" alt="Trainer Photo" class="w-12 h-12 rounded-full object-cover" />
-                                            <div>
-                                                <h4 class="text-md font-semibold text-indigo-600">
-                                                    {{ $train->instructor->name }}
-                                                </h4>
-                                                <p class="text-sm text-gray-700">
-                                                    <strong>Specialty:</strong> {{ $train->instructor->specialty }}
-                                                </p>
-                                                <p class="text-sm text-gray-700">
-                                                    <strong>Class Duration / Day:</strong> {{ $train->instructor->duration }} hours
-                                                </p>
-                                            </div>
+                                    <div class="bg-gray-100 p-4 rounded-lg flex items-center gap-4 mb-4 shadow-sm border border-gray-300">
+                                        <img src="{{ asset('image/th.jpg') }}" alt="Trainer Photo" 
+                                            class="w-12 h-12 rounded-full object-cover bg-white border-2 border-indigo-600 shadow-sm" />
+                                        <div>
+                                            <h4 class="text-md font-semibold text-indigo-600">
+                                                {{ $train->instructor->name }}
+                                            </h4>
+                                            <p class="text-sm text-gray-700">
+                                                <strong>Specialty:</strong> {{ $train->instructor->specialty }}
+                                            </p>
+                                            <p class="text-sm text-gray-700">
+                                                <strong>Class Duration / Day:</strong> {{ $train->instructor->duration }} hours
+                                            </p>
                                         </div>
+                                    </div>
                                     @empty
                                         <p class="text-gray-500 italic">No trainers assigned to this subscription yet.</p>
                                     @endforelse
